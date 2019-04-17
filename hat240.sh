@@ -69,7 +69,9 @@ function print_program_header {
 
 function display_progress_bar {
     n=$(((test_number)*bar_length / test_count))
-    printf "\r[%-${bar_length}s] #%d " "${bar:0:n}" $((test_number))
+    #printf "\r0.s " {1..40}
+    printf "\r                                                       "
+    printf "\r[%-${bar_length}s] #%d Low:%3d " "${bar:0:n}" $((test_number)) $((minimum_score))
 }
 
 # Functions for running tests
@@ -125,6 +127,7 @@ function abort_testing_command {
 }
 
 function toggle_break_on_failure_command {
+    printf "\r                                                       "
     echo
     echo
     if [ $break_on_failure = 0 ]; then
@@ -145,6 +148,8 @@ function print_lowest_score {
 }
 
 function check_failure_count_command {
+    #printf "\r0.s " {1..40}
+    printf "\r                                                       "
     echo
     echo
     echo "$tests_failed tests failed so far!"
@@ -163,6 +168,8 @@ function initialize_hat_command {
 }
 
 function help_command {
+    #printf "\r0.s " {1..30}
+    printf "\r                                                       "
     echo
     echo
     echo "The following commands are available:"
@@ -185,7 +192,7 @@ function check_for_non_pause_commands {
         toggle_break_on_failure_command
     elif [[ "$key_press" = *"a"* ]]; then
         abort_testing_command
-    elif [[ "$key_press" = *"\`"* ]]; then
+    elif [[ "$key_press" = *"1"* ]]; then
         initialize_hat_command
     else
         command_run=0
