@@ -70,7 +70,7 @@ function print_program_header {
 function display_progress_bar {
     n=$(((test_number)*bar_length / test_count))
     #printf "\r0.s " {1..40}
-    printf "\r                                                       "
+    printf "\r                                                      "
     printf "\r[%-${bar_length}s] #%d Low:%3d " "${bar:0:n}" $((test_number)) $((minimum_score))
 }
 
